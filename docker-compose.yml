@@ -1,0 +1,7 @@
+services:
+  julia:
+    image: julia:1.11
+    working_dir: /app
+    volumes:
+      - .:/app
+    tty: true
