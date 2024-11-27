@@ -15,3 +15,6 @@ in:
 
 log:
 	docker compose logs -f julia
+
+run:
+	docker compose exec julia julia ./ProjectEuler/src/ProjectEuler.jl
