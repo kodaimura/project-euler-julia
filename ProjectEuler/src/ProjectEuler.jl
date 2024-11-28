@@ -1,5 +1,6 @@
 module ProjectEuler
 
-greet() = print("Hello World!")
+include("project_euler.jl")
 
+prob1()
 end # module ProjectEuler
