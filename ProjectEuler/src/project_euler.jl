@@ -142,3 +142,17 @@ function smallest_multiple(ls)
     end
     return i
 end
+
+# Sum Square Difference
+function prob6()
+    println(sum_square_difference(10))
+    println(sum_square_difference(100))
+end
+
+function square(x)
+    return x^2
+end
+
+function sum_square_difference(n)
+    return square(sum(1:n)) - sum(map(square, 1:n))
+end
