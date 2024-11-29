@@ -71,7 +71,7 @@ function isprime(x)
         return false
     end
     i = 3
-    while i * i < x
+    while i * i <= x
         if x % i == 0
             return false
         end
@@ -155,4 +155,19 @@ end
 
 function sum_square_difference(n)
     return square(sum(1:n)) - sum(map(square, 1:n))
+end
+
+# 10001st Prime
+function prob7()
+    println(nth_prime(1))
+    println(nth_prime(6))
+    println(nth_prime(10001))
+end
+
+function nth_prime(n)
+    x = 1
+    for _ in 1:n
+        x = next_prime(x)
+    end
+    return x
 end
