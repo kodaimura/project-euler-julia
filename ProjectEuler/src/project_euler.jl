@@ -128,3 +128,17 @@ function max_palindrome_product(digit)
     end
     return max
 end
+
+# Smallest Multiple
+function prob5()
+    println(smallest_multiple(1:10))
+    #println(smallest_multiple(1:20))
+end
+
+function smallest_multiple(ls)
+    i = 1
+    while any(x -> i%x != 0, ls)
+        i += 1
+    end
+    return i
+end
