@@ -9,4 +9,5 @@ prob4()
 prob5()
 prob6()
 prob7()
+prob8()
 end # module ProjectEuler
