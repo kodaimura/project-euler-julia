@@ -36,9 +36,7 @@ function fibonacci_below(a, b, max)
     ret = [a, b]
     while true
         x = a + b
-        if (max < x) 
-            break
-        end
+        max < x && break
         push!(ret, x)
         a = b
         b = x
@@ -105,3 +103,28 @@ function prime_factor(x)
     return ret
 end
 
+# Largest Palindrome Product
+function prob4()
+    println(max_palindrome_product(3))
+end
+
+function is_palindrome(s)
+    return reverse(s) == s
+end
+
+function max_palindrome_product(digit)
+    if digit == 1
+        return 
+    end
+    max = 0
+    for x in 10^(digit-1):10^digit-1
+        for y in x:10^digit-1
+            product = x * y
+            product < max && continue
+            if is_palindrome(string(product))
+                max = product
+            end
+        end
+    end
+    return max
+end
