@@ -54,3 +54,54 @@ function fibonacci_below_v2(a, b, max)
     end
     return ret
 end
+
+# Largest Prime Factor
+function prob3()
+    println(isprime(2))
+    println(isprime(3))
+    println(isprime(8))
+    println(isprime(19))
+    println(prime_factor(13195))
+    println(maximum(prime_factor(600851475143)))
+end
+
+function isprime(x)
+    if x == 2
+        return true
+    end
+    if x < 2 || iseven(x)
+        return false
+    end
+    i = 3
+    while i * i < x
+        if x % i == 0
+            return false
+        end
+        i += 2
+    end
+    return true
+end
+
+function next_prime(x)
+    i = x + 1
+    while !isprime(i)
+        i += 1
+    end
+    return i
+end
+
+function prime_factor(x)
+    ret = []
+    i = 2
+    while !isprime(x)
+        if x % i == 0
+            push!(ret, i)
+            x /= i
+        else
+            i = next_prime(i)
+        end
+    end
+    push!(ret, Int(x))
+    return ret
+end
+
