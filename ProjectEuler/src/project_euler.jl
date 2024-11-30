@@ -587,3 +587,23 @@ function prob20()
     println(sum_digits(factorial(10)))
     println(sum_digits(factorial(BigInt(100))))
 end
+
+# Amicable Numbers
+function prob21()
+    println(sum_amicable_numbers(10000))
+end
+
+function sum_divisors(n)
+    sum([i for i in 1:(n ÷ 2) if n % i == 0])
+end
+
+function sum_amicable_numbers(limit)
+    ret = 0
+    for a in 2:limit-1
+        b = sum_divisors(a)
+        if b > a && b < limit && sum_divisors(b) == a
+            ret += a + b
+        end
+    end
+    return ret
+end
