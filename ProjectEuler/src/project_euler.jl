@@ -218,3 +218,22 @@ function max_product_series_v2(series, n)
     ls = [parse(Int, c) for c in replace(series, r"\D" => "")]
     return maximum([reduce(*, ls[i:i+n-1]) for i in 1:(length(ls)-n+1)])
 end
+
+# Special Pythagorean Triplet
+function prob9()
+    println(sepcial_pythagorean_triplet(12))
+    println(sepcial_pythagorean_triplet(1000))
+    println(reduce(*, sepcial_pythagorean_triplet(1000)))
+end
+
+function sepcial_pythagorean_triplet(x)
+    for a in 1:floor(Int, x/3)
+        for b in a:x-a
+            c = x - a - b
+            if a^2 + b^2 == c^2
+                return [a, b, c]
+            end
+        end
+    end
+    return [0, 0, 0]
+end
