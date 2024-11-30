@@ -528,3 +528,56 @@ function maximum_path_sum(triangle)
     end
     return triangle[1][1]
 end
+
+# Counting Sundays
+function prob19()
+    println(count_sundays(1901, 2000, get_day_of_week(1901, 1, 1)))
+end
+
+function is_leapyear(year)
+    return year % 4 == 0 && !(year % 100 == 0 && year % 400 != 0)
+end
+
+function get_day_of_week(year, month, day)
+    month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    day_of_week = 1 #1900/1/1 -> monday
+
+    for y in 1900:year
+        for m in 1:12
+            if y == year && m == month
+                for m in 1:month
+                    day_of_week = (day_of_week + day - 1) % 7 + 1
+                end
+                break
+            end
+            days = month_days[m]
+            if m == 2 && is_leapyear(y)
+                days += 1
+            end
+            day_of_week = (day_of_week + days - 1) % 7 + 1
+        end
+    end
+    
+    return day_of_week
+end
+
+function count_sundays(start_year, end_year, start_day_of_week)
+    ret = 0
+    month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    day_of_week = start_day_of_week
+
+    for y in start_year:end_year
+        for m in 1:12
+            if day_of_week == 7
+                ret += 1
+            end
+            days = month_days[m]
+            if m == 2 && is_leapyear(y)
+                days += 1
+            end
+            day_of_week = (day_of_week + days - 1) % 7 + 1
+        end
+    end
+    
+    return ret
+end
