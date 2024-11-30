@@ -446,3 +446,32 @@ const PROB13 = """
 20849603980134001723930671666823555245252804609722
 53503534226472524250874054075591789781264330331690
 """
+
+# Longest Collatz Sequence
+function prob14()
+    println(collatz_sequence(13))
+    println(longest_collatz_sequence(1000000))
+end
+
+function longest_collatz_sequence(limit)
+    ret = 0
+    max_len = 0
+    for i in 1:limit
+        len = length(collatz_sequence(i))
+        if len > max_len
+            max_len = len
+            ret = i
+        end
+    end
+    return ret
+end
+
+function collatz_sequence(x)
+    ret = [x]
+    while true
+        x = iseven(x) ? Int(x / 2) : 3x + 1 
+        push!(ret, x)
+        x == 1 && break
+    end
+    return ret 
+end
