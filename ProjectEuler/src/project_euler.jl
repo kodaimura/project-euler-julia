@@ -173,12 +173,6 @@ function nth_prime(n)
 end
 
 # Largest Product in a Series
-function prob8()
-    println(max_product_series(PROB8, 4))
-    println(max_product_series(PROB8, 13))
-    println(max_product_series_v2(PROB8, 13))
-end
-
 const PROB8 = """
 73167176531330624919225119674426574742355349194934
 96983520312774506326239578318016984801869478851843
@@ -201,6 +195,12 @@ const PROB8 = """
 05886116467109405077541002256983155200055935729725
 71636269561882670428252483600823257530420752963450
 """
+
+function prob8()
+    println(max_product_series(PROB8, 4))
+    println(max_product_series(PROB8, 13))
+    println(max_product_series_v2(PROB8, 13))
+end
 
 function max_product_series(series, n)
     ls = [parse(Int, c) for c in replace(series, r"\D" => "")]
@@ -249,10 +249,6 @@ function primes_below(x)
 end
 
 # Largest Product in a Grid
-function prob11()
-    println(max_grid_product(PROB11, 4))
-end
-
 const PROB11 = [
     8  2 22 97 38 15  0 40  0 75  4  5  7 78 52 12 50 77 91  8;
     49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48  4 56 62  0;
@@ -275,6 +271,10 @@ const PROB11 = [
     20 73 35 29 78 31 90  1 74 31 49 71 48 86 81 16 23 57  5 54;
      1 70 54 71 83 51 54 69 16 92 33 48 61 43 52  1 89 19 67 48;
 ]
+
+function prob11()
+    println(max_grid_product(PROB11, 4))
+end
 
 function max_grid_product(grid, length)
     max_prod = 0
@@ -339,11 +339,6 @@ function triangle_with_divisors(limit)
 end
 
 # Large Sum
-function prob13()
-    ls = map(x -> parse(BigInt, x), filter(!isempty, split(PROB13, "\n")))
-    println(string(sum(ls))[1:10])    
-end
-
 const PROB13 = """
 37107287533902102798797998220837590246510135740250
 46376937677490009712648124896970078050417018260538
@@ -447,6 +442,11 @@ const PROB13 = """
 53503534226472524250874054075591789781264330331690
 """
 
+function prob13()
+    ls = map(x -> parse(BigInt, x), filter(!isempty, split(PROB13, "\n")))
+    println(string(sum(ls))[1:10])    
+end
+
 # Longest Collatz Sequence
 function prob14()
     println(collatz_sequence(13))
@@ -494,4 +494,37 @@ end
 
 function sum_digits(n)
     sum(map(x -> parse(Int, x), split(string(n), "")))
+end
+
+# Maximum Path Sum I
+const PROB18 = [
+    [75],
+    [95, 64],
+    [17, 47, 82],
+    [18, 35, 87, 10],
+    [20, 4, 82, 47, 65],
+    [19, 1, 23, 75, 3, 34],
+    [88, 2, 77, 73, 7, 63, 67],
+    [99, 65, 4, 28, 6, 16, 70, 92],
+    [41, 41, 26, 56, 83, 40, 80, 70, 33],
+    [41, 48, 72, 33, 47, 32, 37, 16, 94, 29],
+    [53, 71, 44, 65, 25, 43, 91, 52, 97, 51, 14],
+    [70, 11, 33, 28, 77, 73, 17, 78, 39, 68, 17, 57],
+    [91, 71, 52, 38, 17, 14, 91, 43, 58, 50, 27, 29, 48],
+    [63, 66, 4, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31],
+    [4, 62, 98, 27, 23, 9, 70, 98, 73, 93, 38, 53, 60, 4, 23]
+]
+
+function prob18()
+    println(maximum_path_sum([[3],[7, 4],[2, 4, 6],[8, 5, 9, 3]]))
+    println(maximum_path_sum(PROB18))
+end
+
+function maximum_path_sum(triangle)
+    for row in length(triangle)-1:-1:1
+        for col in 1:length(triangle[row])
+            triangle[row][col] += maximum([triangle[row+1][col], triangle[row+1][col+1]])
+        end
+    end
+    return triangle[1][1]
 end
