@@ -237,3 +237,13 @@ function sepcial_pythagorean_triplet(x)
     end
     return [0, 0, 0]
 end
+
+# Summation of Primes
+function prob10()
+    println(sum(primes_below(10)))
+    println(sum(primes_below(2000000)))
+end
+
+function primes_below(x)
+    filter(isprime, 1:x)
+end
