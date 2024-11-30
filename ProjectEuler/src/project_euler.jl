@@ -307,3 +307,33 @@ function max_grid_product(grid, length)
 
     return max_prod
 end
+
+# Highly Divisible Triangular Number
+function prob12()
+    println(triangle_with_divisors(500))
+end
+
+function count_divisors(n)
+    count = 0
+    for i in 1:floor(Int, sqrt(n))
+        if n % i == 0
+            count += 2
+        end
+    end
+    if isqrt(n)^2 == n
+        count -= 1
+    end
+    return count
+end
+
+function triangle_with_divisors(limit)
+    n = 1
+    triangle = 0
+    while true
+        triangle += n
+        if count_divisors(triangle) > limit
+            return triangle
+        end
+        n += 1
+    end
+end
