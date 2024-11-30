@@ -485,3 +485,13 @@ end
 function lattice_paths(n)
     factorial(BigInt(2n)) ÷ (factorial(BigInt(n))^2)
 end
+
+# Power Digit Sum
+function prob16()
+    println(sum_digits(2^15))
+    println(sum_digits(BigInt(2)^1000))
+end
+
+function sum_digits(n)
+    sum(map(x -> parse(Int, x), split(string(n), "")))
+end
