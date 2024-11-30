@@ -20,4 +20,5 @@ prob15()
 prob16()
 prob18()
 prob19()
+prob20()
 end # module ProjectEuler

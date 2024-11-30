@@ -581,3 +581,9 @@ function count_sundays(start_year, end_year, start_day_of_week)
     
     return ret
 end
+
+# Factorial Digit Sum
+function prob20()
+    println(sum_digits(factorial(10)))
+    println(sum_digits(factorial(BigInt(100))))
+end
