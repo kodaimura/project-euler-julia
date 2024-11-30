@@ -475,3 +475,13 @@ function collatz_sequence(x)
     end
     return ret 
 end
+
+# Lattice Paths
+function prob15()
+    println(lattice_paths(2))
+    println(lattice_paths(20))
+end
+
+function lattice_paths(n)
+    factorial(BigInt(2n)) ÷ (factorial(BigInt(n))^2)
+end
