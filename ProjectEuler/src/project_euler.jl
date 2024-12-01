@@ -624,3 +624,41 @@ end
 function evaluate_name(name)
     return sum(c -> c - 'A' + 1, uppercase(name))
 end
+
+# Non-Abundant Sums
+function prob23()
+    println(non_abundant_sums(28123))
+end
+
+function sum_of_divisors(n)
+    divisors = [i for i in 1:floor(Int, sqrt(n)) if n % i == 0]
+    return sum(divisors) + sum([n ÷ i for i in divisors if i != 1 && n ÷ i != i])
+end
+
+function get_abundant_numbers(limit)
+    ret = []
+    for i in 12:limit
+        if sum_of_divisors(i) > i
+            push!(ret, i)
+        end
+    end
+    return ret
+end
+
+function abundant_sum(limit, abundant_numbers)
+    ret = falses(limit)
+    for i in 1:length(abundant_numbers)
+        for j in i:length(abundant_numbers)
+            sum_abundant = abundant_numbers[i] + abundant_numbers[j]
+            if sum_abundant <= limit
+                ret[sum_abundant] = true
+            end
+        end
+    end
+    return ret
+end
+
+function non_abundant_sums(limit)
+    ls = abundant_sum(limit, get_abundant_numbers(limit))
+    return sum([i for i in 1:limit if !ls[i]])
+end
