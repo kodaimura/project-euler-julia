@@ -1,3 +1,5 @@
+self_dir = @__DIR__
+
 # Multiples of 3 or 5
 function prob1()
     println(sum(multiples_of(1000, [3, 5])))
@@ -606,4 +608,19 @@ function sum_amicable_numbers(limit)
         end
     end
     return ret
+end
+
+# Names Scores
+function prob22()
+    file_content = read(joinpath(self_dir, "0022_names.txt"), String)
+    names = sort(split(replace(file_content, "\"" => ""), ","))
+    println(names_score(names))
+end
+
+function names_score(names)
+    return sum(i * evaluate_name(name) for (i, name) in enumerate(names))
+end
+
+function evaluate_name(name)
+    return sum(c -> c - 'A' + 1, uppercase(name))
 end
