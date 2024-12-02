@@ -684,3 +684,20 @@ function lexicographicPermutations(elements, n)
     
     return join(result)
 end
+
+# 1000-digit Fibonacci Number
+function prob25()
+    println(index_of_first_n_digit_fibonacci(3))
+    println(index_of_first_n_digit_fibonacci(1000))
+end
+
+function index_of_first_n_digit_fibonacci(n)
+    index = 1
+    a = BigInt(1)
+    b = BigInt(1)
+    while length(string(a)) < n
+        a, b = b, a + b
+        index += 1
+    end
+    return index
+end
