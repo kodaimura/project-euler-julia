@@ -662,3 +662,25 @@ function non_abundant_sums(limit)
     ls = abundant_sum(limit, get_abundant_numbers(limit))
     return sum([i for i in 1:limit if !ls[i]])
 end
+
+# Lexicographic Permutations
+function prob24()
+    println(lexicographicPermutations([0,1,2,3,4,5,6,7,8,9], 1000000))
+end
+
+function lexicographicPermutations(elements, n)
+    position = n - 1
+    len = length(elements)
+    result = []
+    available = sort(elements)
+    
+    for i in 1:len
+        fact = factorial(BigInt(len - i))
+        index = div(position, fact) + 1
+        position = mod(position, fact)
+        push!(result, available[index])
+        deleteat!(available, index)
+    end
+    
+    return join(result)
+end
