@@ -739,3 +739,30 @@ function get_divide_longest_recurring_cycle(limit)
     end
     return result
 end
+
+# Quadratic Primes
+function prob27()
+    a, b = quadratic_primes_coefficient()
+    println(a * b)
+end
+
+function quadratic_primes_coefficient()
+    max_length = 0
+    result_a = 0
+    result_b = 0
+
+    for a in -999:999
+        for b in -1000:1000
+            n = 0
+            while isprime(n^2 + a * n + b)
+                n += 1
+            end
+            if n > max_length
+                max_length = n
+                result_a = a
+                result_b = b
+            end
+        end
+    end
+    return result_a, result_b
+end
