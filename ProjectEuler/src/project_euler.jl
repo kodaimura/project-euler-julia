@@ -701,3 +701,41 @@ function index_of_first_n_digit_fibonacci(n)
     end
     return index
 end
+
+# Reciprocal Cycles
+function prob26()
+    println(get_divide_longest_recurring_cycle(1000))
+end
+
+function recurring_cycle(d)
+    remainders = Dict{Int, Int}()
+    decimal_part = []
+    r = 1
+    i = 0
+
+    while r != 0
+        if haskey(remainders, r)
+            index = remainders[r] + 1
+            return join(decimal_part[index:end])
+        end
+        remainders[r] = i
+        push!(decimal_part, div(r * 10, d))
+        r = (r * 10) % d
+        i += 1
+    end
+    return ""
+end
+
+function get_divide_longest_recurring_cycle(limit)
+    max_length = 0
+    result = 0
+
+    for d in 2:limit-1
+        cycle = recurring_cycle(d)
+        if length(cycle) > max_length
+            max_length = length(cycle)
+            result = d
+        end
+    end
+    return result
+end
