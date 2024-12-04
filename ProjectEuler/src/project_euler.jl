@@ -766,3 +766,21 @@ function quadratic_primes_coefficient()
     end
     return result_a, result_b
 end
+
+# Number Spiral Diagonals
+function prob28()
+    println(spiral_aiagonals_number(5))
+    println(spiral_aiagonals_number(1001))
+end
+
+function spiral_aiagonals_number(one_side)
+    result = 1
+    x = 1
+    for side in 3:2:one_side
+        for _ in 1:4
+            x += side - 1
+            result += x
+        end
+    end
+    return result
+end
