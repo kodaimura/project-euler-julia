@@ -784,3 +784,13 @@ function spiral_aiagonals_number(one_side)
     end
     return result
 end
+
+# Distinct Powers
+function prob29()
+    println(length(distinct_powers(5, 5)))
+    println(length(distinct_powers(BigInt(100), BigInt(100))))
+end
+
+function distinct_powers(a_limit, b_limit)
+    return unique(vcat(map(b -> (map(a -> a^b, 2:a_limit)), 2:b_limit)...))
+end
