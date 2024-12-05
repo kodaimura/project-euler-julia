@@ -837,3 +837,28 @@ function count_coin_combinations_aux(x, coins)
     return count_coin_combinations_aux(x - coins[1], coins) + 
            count_coin_combinations_aux(x, coins[2:end])
 end
+
+# Pandigital Products
+function prob32()
+    println(count_pandigital_product(1:9))
+end
+
+function count_pandigital_product(ls)
+    pandigitals = []
+    test = join(sort(ls))
+    digit = length(ls)
+    limit = Int(iseven(digit) ? 10^(digit / 2) : 10^((digit - 1) / 2))
+    for i in 2:limit
+        for j in i:-1:1
+            x = string(i, j, i * j)
+            if is_anagram(x, test)
+                push!(pandigitals, i * j)
+            end
+        end
+    end
+    return sum(unique(pandigitals))
+end
+
+function is_anagram(str1, str2)
+    return join(sort(collect(str1))) == str2
+end
