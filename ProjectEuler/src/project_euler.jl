@@ -794,3 +794,22 @@ end
 function distinct_powers(a_limit, b_limit)
     return unique(vcat(map(b -> (map(a -> a^b, 2:a_limit)), 2:b_limit)...))
 end
+
+# Digit Fifth Powers
+function prob30()
+    println(sum(get_digit_fifth_powers()))
+end
+
+function get_digit_fifth_powers()
+    result = []
+    for i in 2:(9^5)*6
+        if is_digit_power_sum(i, 5)
+            push!(result, i)
+        end
+    end
+    return result
+end
+
+function is_digit_power_sum(n, power)
+    return n == sum(map(s -> parse(Int, s)^power ,split(string(n), "")))
+end
