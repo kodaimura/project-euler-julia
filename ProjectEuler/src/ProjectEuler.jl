@@ -31,4 +31,5 @@ prob27()
 prob28()
 prob29()
 prob30()
+prob31()
 end # module ProjectEuler

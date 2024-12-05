@@ -813,3 +813,27 @@ end
 function is_digit_power_sum(n, power)
     return n == sum(map(s -> parse(Int, s)^power ,split(string(n), "")))
 end
+
+# Coin Sums
+function prob31()
+    println(count_coin_combinations(200, [200, 100, 50, 20, 10, 5, 2, 1]))
+end
+
+function count_coin_combinations(x, coins)
+    if x == 0
+        return 0
+    end
+    return count_coin_combinations_aux(x, sort(coins, rev=true))
+end
+
+function count_coin_combinations_aux(x, coins)
+    if x < 0
+        return 0
+    elseif x == 0
+        return 1
+    elseif length(coins) == 1
+        return x % coins[1] == 0 ? 1 : 0
+    end
+    return count_coin_combinations_aux(x - coins[1], coins) + 
+           count_coin_combinations_aux(x, coins[2:end])
+end
